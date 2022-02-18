@@ -43,6 +43,6 @@ sudo apt-get install -y powershell
 
 #### INSTALL AZ Module###
 
-wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
+wget https://raw.githubusercontent.com/GithubVictrix/Victrix/main/Powershell.sh
 sudo chmod 777 Powershell.sh 
 runuser -l azureuser -c "/home/azureuser/Powershell.sh"
