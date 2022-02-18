@@ -34,6 +34,17 @@ sudo apt-get install azure-cli
 ### update OS & Install PSHELL & Module AZ
 cd /home/azureuser
 sudo apt-get update
+
+#### INSTALL AZ Bicep###
+# Fetch the latest Bicep CLI binary
+curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+# Mark it as executable
+chmod +x ./bicep
+# Add bicep to your PATH (requires admin)
+sudo mv ./bicep /usr/local/bin/bicep
+# Verify you can now access the 'bicep' command
+bicep --help
+# Done!
 runuser -l azureuser sudo apt-get install -y wget apt-transport-https
 wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
