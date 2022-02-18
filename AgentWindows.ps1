@@ -75,5 +75,9 @@ Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 #Etape : Install the module AZ
 Install-Module -Name Az
 
+##################################
+#### TERRAFORM ###################
+##################################
+
 
 
