@@ -1,33 +1,26 @@
-# Installation Terraform
+#Terraform
 sudo wget https://releases.hashicorp.com/terraform/1.1.5/terraform_1.1.5_linux_amd64.zip
 sudo apt install unzip && unzip terraform_1.1.5_linux_amd64.zip
 sudo mv terraform /usr/local/bin/terraform
 sudo chmod -R 777 /usr/local/bin/terraform
-
-# Installation Azure Bicep
-# Fetch the latest Bicep CLI binary
-curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
-# Mark it as executable
-chmod +x ./bicep
-# Add bicep to your PATH (requires admin)
-sudo mv ./bicep /usr/local/bin/bicep
-# Verify you can now access the 'bicep' command
-bicep --help
-
-# Installation Git
+#GIT
 sudo apt install git-all -y
-
-# Installation Agent Azure DevOps
+#Agentdevops
+#echo "$1" > /tmp/echofile
+#echo "$2" > /tmp/echofile2
+#echo "$3" > /tmp/echofile3
 sudo mkdir /myagent
 cd /myagent
 sudo wget https://vstsagentpackage.azureedge.net/agent/2.186.1/vsts-agent-linux-x64-2.186.1.tar.gz
 sudo tar zxvf ./vsts-agent-linux-x64-2.186.1.tar.gz
 sudo chmod -R 777 /myagent
 runuser -l azureuser -c "/myagent/config.sh --unattended  --url $1 --auth pat --token $2 --pool $3"
+#/myagent/config.sh --unattended  --url "$1" --auth pat --token "$2" --pool "$3"
 sudo /myagent/svc.sh install
 sudo /myagent/svc.sh start
-
-# Installation AZ CLI Linux 
+#exit 0
+##Install CLI on Linux###
+#curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
 curl -sL https://packages.microsoft.com/keys/microsoft.asc |
@@ -38,8 +31,7 @@ echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO 
 sudo tee /etc/apt/sources.list.d/azure-cli.list
 sudo apt-get update
 sudo apt-get install azure-cli
-
-# MAJ OS & Installation Powershell & Modules AZ
+### update OS & Install PSHELL & Module AZ
 cd /home/azureuser
 sudo apt-get update
 runuser -l azureuser sudo apt-get install -y wget apt-transport-https
@@ -48,7 +40,9 @@ sudo dpkg -i packages-microsoft-prod.deb
 sudo apt-get update
 sudo add-apt-repository universe
 sudo apt-get install -y powershell
-sudo mv Powershell.sh /usr/local/bin/Powershell.sh
-sudo chmod -R 777 /usr/local/bin/Powershell.sh
-cd  /usr/local/bin/ 
-Powershell.sh
+
+#### INSTALL AZ Module###
+
+wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
+sudo chmod 777 Powershell.sh 
+runuser -l azureuser -c "/home/azureuser/Powershell.sh"
