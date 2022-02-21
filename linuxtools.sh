@@ -3,7 +3,6 @@ sudo wget https://releases.hashicorp.com/terraform/1.1.5/terraform_1.1.5_linux_a
 sudo apt install unzip && unzip terraform_1.1.5_linux_amd64.zip
 sudo mv terraform /usr/local/bin/terraform
 sudo chmod -R 777 /usr/local/bin/terraform
-
 # Azure Bicep
 # Fetch the latest Bicep CLI binary
 curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
