@@ -51,21 +51,9 @@ sudo add-apt-repository universe
 # Install PowerShell Core
 sudo apt-get install -y powershell
 
-# Run PowerShell
-pwsh
- 
-# Install the PowerShell Az module
-Install-Module -Name Az -AllowClobber -Repository PSGallery -force 
- 
-# Import the Az module to your profile
-# Note that this module is ONLY available on YOUR profile (that is the profile used to run these commands)
-Import-Module Az
- 
-# Exit PowerShell
-exit
 
 # Routine upgrade of package
-#sudo apt-get upgrade powershell
-#wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
-#sudo chmod 777 Powershell.sh 
-#runuser -l azureuser -c "/home/azureuser/Powershell.sh"
+sudo apt-get upgrade powershell
+wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
+sudo chmod 777 Powershell.sh 
+runuser -l azureuser -c "/home/azureuser/Powershell.sh"
