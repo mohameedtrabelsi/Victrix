@@ -13,26 +13,28 @@ sudo wget https://vstsagentpackage.azureedge.net/agent/2.186.1/vsts-agent-linux-
 sudo tar zxvf ./vsts-agent-linux-x64-2.186.1.tar.gz
 sudo chmod -R 777 /myagent
 runuser -l azureuser -c "/myagent/config.sh --unattended  --url $1 --auth pat --token $2 --pool $3"
-#/myagent/config.sh --unattended  --url "$1" --auth pat --token "$2" --pool "$3"
+
 sudo /myagent/svc.sh install
 sudo /myagent/svc.sh start
+
+
 #exit 0
 # ##Install CLI on Linux###
-# #curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-# sudo apt-get update
-# sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
-# curl -sL https://packages.microsoft.com/keys/microsoft.asc |
-# gpg --dearmor |
-# sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
-# AZ_REPO=$(lsb_release -cs)
-# echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
-# sudo tee /etc/apt/sources.list.d/azure-cli.list
-# sudo apt-get update
-# sudo apt-get install azure-cli
-# ### update OS & Install PSHELL & Module AZ
-# cd /home/azureuser
-# sudo apt-get update
-# runuser -l azureuser sudo apt-get install -y wget apt-transport-https
+#curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+curl -sL https://packages.microsoft.com/keys/microsoft.asc |
+gpg --dearmor |
+sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+AZ_REPO=$(lsb_release -cs)
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
+sudo tee /etc/apt/sources.list.d/azure-cli.list
+sudo apt-get update
+sudo apt-get install azure-cli
+### update OS & Install Module AZ
+cd /home/azureuser
+sudo apt-get update
+runuser -l azureuser sudo apt-get install -y wget apt-transport-https
 
 # #### INSTALL AZ Module###
 # # Download the GNU Privacy Guard (GnuPG or GPG) keys
