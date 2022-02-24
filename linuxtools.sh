@@ -35,14 +35,37 @@ sudo apt-get install azure-cli
 cd /home/azureuser
 sudo apt-get update
 runuser -l azureuser sudo apt-get install -y wget apt-transport-https
-wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update
-sudo add-apt-repository universe
-sudo apt-get install -y powershell
 
 #### INSTALL AZ Module###
+# Download the GNU Privacy Guard (GnuPG or GPG) keys
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+# Register the GPG keys from the Microsoft repository
+sudo dpkg -i packages-microsoft-prod.deb
+ 
+# Routine update of packages
+sudo apt-get update
+ 
+# Now, enable the "universe" repos
+sudo add-apt-repository universe
+ 
+# Install PowerShell Core
+sudo apt-get install -y powershell
 
-wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
-sudo chmod 777 Powershell.sh 
-runuser -l azureuser -c "/home/azureuser/Powershell.sh"
+# Run PowerShell
+pwsh
+ 
+# Install the PowerShell Az module
+Install-Module -Name Az -AllowClobber -Repository PSGallery -force 
+ 
+# Import the Az module to your profile
+# Note that this module is ONLY available on YOUR profile (that is the profile used to run these commands)
+Import-Module Az
+ 
+# Exit PowerShell
+exit
+
+# Routine upgrade of package
+#sudo apt-get upgrade powershell
+#wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
+#sudo chmod 777 Powershell.sh 
+#runuser -l azureuser -c "/home/azureuser/Powershell.sh"
