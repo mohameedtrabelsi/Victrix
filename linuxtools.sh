@@ -13,47 +13,45 @@ sudo wget https://vstsagentpackage.azureedge.net/agent/2.186.1/vsts-agent-linux-
 sudo tar zxvf ./vsts-agent-linux-x64-2.186.1.tar.gz
 sudo chmod -R 777 /myagent
 runuser -l azureuser -c "/myagent/config.sh --unattended  --url $1 --auth pat --token $2 --pool $3"
-
+#/myagent/config.sh --unattended  --url "$1" --auth pat --token "$2" --pool "$3"
 sudo /myagent/svc.sh install
 sudo /myagent/svc.sh start
-
-
 #exit 0
-# ##Install CLI on Linux###
+##Install CLI on Linux###
 #curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt-get update
-#sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
 curl -sL https://packages.microsoft.com/keys/microsoft.asc |
-# gpg --dearmor |
-# sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+gpg --dearmor |
+sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
 AZ_REPO=$(lsb_release -cs)
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
 sudo tee /etc/apt/sources.list.d/azure-cli.list
 sudo apt-get update
 sudo apt-get install azure-cli
-### update OS & Install Module AZ
+### update OS & Install PSHELL & Module AZ
 cd /home/azureuser
 sudo apt-get update
-runuser -l azureuser sudo apt-get install wget apt-transport-https
+runuser -l azureuser sudo apt-get install -y wget apt-transport-https
 
-# #### INSTALL AZ Module###
-# # Download the GNU Privacy Guard (GnuPG or GPG) keys
-# wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
-# # Register the GPG keys from the Microsoft repository
-# sudo dpkg -i packages-microsoft-prod.deb
+#### INSTALL AZ Module###
+# Download the GNU Privacy Guard (GnuPG or GPG) keys
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+# Register the GPG keys from the Microsoft repository
+sudo dpkg -i packages-microsoft-prod.deb
  
-# # Routine update of packages
-# sudo apt-get update
+# Routine update of packages
+sudo apt-get update
  
-# # Now, enable the "universe" repos
-# sudo add-apt-repository universe
+# Now, enable the "universe" repos
+sudo add-apt-repository universe
  
-# # Install PowerShell Core
-# sudo apt-get install -y powershell
+# Install PowerShell Core
+sudo apt-get install -y powershell
 
 
-# # Routine upgrade of package
-# sudo apt-get upgrade powershell
-# wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
-# sudo chmod 777 Powershell.sh 
-# runuser -l azureuser -c "/home/azureuser/Powershell.sh"
+# Routine upgrade of package
+sudo apt-get upgrade powershell
+wget https://raw.githubusercontent.com/mbouaklaine/MohamedBouaklaine/main/Powershell.sh
+sudo chmod 777 Powershell.sh 
+runuser -l azureuser -c "/home/azureuser/Powershell.sh"
